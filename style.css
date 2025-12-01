@@ -1,59 +1,40 @@
-/* ===== RESETEO ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* ===== FONDOS DE SECCIÓN ===== */
+/* Reset */
 body {
-    color: #fff;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: white;
     text-align: center;
-    min-height: 100vh;
-    background: #000428;  /* fallback */
-    background: linear-gradient(135deg, #000428, #004e92);
-    overflow-x: hidden;
 }
 
-/* Efecto de líneas tecnológicas animadas */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background-image: 
-        linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(0,255,255,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: moverLineas 6s linear infinite;
+/* Fondo tecnológico neon */
+.inicio, .categorias, .trabajos {
+    background: radial-gradient(circle at top, #0a0f1a, #000000);
+    background-attachment: fixed;
 }
 
-@keyframes moverLineas {
-    0% { background-position: 0 0; }
-    100% { background-position: 40px 40px; }
-}
-
-/* Contenedor */
+/* Contenedor central */
 .contenido {
-    background: rgba(0, 0, 0, 0.55);
-    padding: 35px;
-    width: 85%;
-    max-width: 500px;
-    margin: 90px auto;
-    border-radius: 18px;
+    background: rgba(20, 20, 20, 0.75);
+    padding: 40px;
+    margin-top: 80px;
+    width: 90%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    border: 1px solid #00b7ff55;
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 20px #00eaff;
-    border: 1px solid rgba(0, 255, 255, 0.3);
+
+    /* Glow neon */
+    box-shadow: 0 0 20px #00b7ff55;
 }
 
 /* Títulos */
 h1 {
     margin-bottom: 20px;
-    font-size: 2.5em;
-    text-shadow: 0 0 10px #00eaff;
+    font-size: 2.6em;
+    color: #00d0ff;
+    text-shadow: 0 0 10px #00c0ff;
 }
 
 /* Botones neon */
@@ -61,81 +42,67 @@ h1 {
     display: block;
     margin: 15px auto;
     padding: 15px 25px;
-    background: transparent;
-    color: #00eaff;
+    background: #007bff;
+    color: white;
     text-decoration: none;
-    border-radius: 12px;
-    width: 80%;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 400px;
     font-size: 1.3em;
-    border: 2px solid #00eaff;
-    transition: 0.3s;
-    text-shadow: 0 0 8px #00eaff;
+
+    border: 1px solid #00c8ff;
+    box-shadow: 0 0 15px #009dff;
+    transition: 0.25s;
 }
 
 .boton:hover {
-    background: #00eaff;
-    color: #000;
-    box-shadow: 0 0 20px #00eaff;
+    background: #009dff;
+    box-shadow: 0 0 25px #00c8ff;
 }
 
 /* Botón volver */
 .volver {
     display: inline-block;
-    margin-top: 25px;
+    margin-top: 30px;
     padding: 10px 20px;
-    background: transparent;
-    color: #ff3bff;
+    background: #222;
+    color: #00c8ff;
     text-decoration: none;
     border-radius: 10px;
-    border: 2px solid #ff3bff;
-    transition: 0.3s;
-    text-shadow: 0 0 6px #ff3bff;
+
+    border: 1px solid #00b7ff55;
+    box-shadow: 0 0 10px #007bff55;
+    transition: 0.2s;
 }
 
 .volver:hover {
-    background: #ff3bff;
-    color: #000;
-    box-shadow: 0 0 18px #ff3bff;
+    background: #00c8ff;
+    color: black;
+    box-shadow: 0 0 20px #00e5ff;
 }
 
-/* Lista de archivos */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
+/* Lista */
 li {
     margin: 12px 0;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
-/* Enlaces de archivos */
-li a {
-    color: #39e7ff;
-    text-decoration: none;
-    transition: 0.3s;
+a {
+    color: #00e1ff;
 }
 
-li a:hover {
-    color: #00eaff;
-    text-shadow: 0 0 10px #00eaff;
-}
-
-/* ===== RESPONSIVO (CELULAR) ===== */
-@media (max-width: 480px) {
-
+/* MODO RESPONSIVE PARA CELULAR */
+@media (max-width: 600px) {
     h1 {
         font-size: 2em;
     }
-
     .contenido {
-        width: 90%;
+        width: 92%;
         padding: 25px;
-        margin-top: 60px;
+        margin-top: 40px;
     }
-
     .boton {
-        width: 100%;
+        width: 90%;
         font-size: 1.1em;
     }
 }
