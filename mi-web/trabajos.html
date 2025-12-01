@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Archivos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="trabajos">
+
+    <div class="contenido" id="contenedor-archivos">
+        <h1 id="titulo"></h1>
+
+        <ul id="lista"></ul>
+
+        <a href="categorias.html" class="volver">Volver</a>
+    </div>
+
+    <script>
+        // Detectar tipo desde URL
+        const params = new URLSearchParams(window.location.search);
+        const tipo = params.get("tipo");
+
+        const titulo = document.getElementById("titulo");
+        const lista = document.getElementById("lista");
+
+        // Archivos por categoría
+        const archivos = {
+            finales: [
+                { nombre: "Trabajo Final 1", archivo: "archivo1.pdf" },
+                { nombre: "Trabajo Final 2", archivo: "archivo2.docx" }
+            ],
+
+            tareas: [
+                { nombre: "Tarea 1", archivo: "tarea1.pdf" },
+                { nombre: "Tarea 2", archivo: "tarea2.pdf" },
+                { nombre: "Tarea 3", archivo: "tarea3.pdf" },
+                { nombre: "Tarea 4", archivo: "tarea4.pdf" },
+                { nombre: "Tarea 5", archivo: "tarea5.pdf" },
+                { nombre: "Tarea 6", archivo: "tarea6.pdf" },
+                { nombre: "Tarea 7", archivo: "tarea7.pdf" }
+            ],
+
+            proyectos: [
+                { nombre: "Proyecto 1", archivo: "proyecto1.pdf" },
+                { nombre: "Proyecto 2", archivo: "proyecto2.pdf" },
+                { nombre: "Proyecto 3", archivo: "proyecto3.pdf" },
+                { nombre: "Proyecto 4", archivo: "proyecto4.pdf" },
+                { nombre: "Proyecto 5", archivo: "proyecto5.pdf" },
+                { nombre: "Proyecto 6", archivo: "proyecto6.pdf" },
+                { nombre: "Proyecto 7", archivo: "proyecto7.pdf" },
+                { nombre: "Proyecto 8", archivo: "proyecto8.pdf" }
+            ],
+
+            examenes: [
+                { nombre: "Examen 1", archivo: "examen1.pdf" },
+                { nombre: "Examen 2", archivo: "examen2.pdf" },
+                { nombre: "Examen 3", archivo: "examen3.pdf" },
+                { nombre: "Examen 4", archivo: "examen4.pdf" },
+                { nombre: "Examen 5", archivo: "examen5.pdf" },
+                { nombre: "Examen 6", archivo: "examen6.pdf" },
+                { nombre: "Examen 7", archivo: "examen7.pdf" },
+                { nombre: "Examen 8", archivo: "examen8.pdf" },
+                { nombre: "Examen 9", archivo: "examen9.pdf" }
+            ]
+        };
+
+        // Títulos bonitos
+        const nombresBonitos = {
+            finales: "Trabajos Finales",
+            tareas: "Tareas",
+            proyectos: "Proyectos",
+            examenes: "Exámenes"
+        };
+
+        titulo.textContent = nombresBonitos[tipo];
+
+        // Insertar archivos
+        archivos[tipo].forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="archivos/${item.archivo}" target="_blank">${item.nombre}</a>`;
+            lista.appendChild(li);
+        });
+    </script>
+
+</body>
+</html>
