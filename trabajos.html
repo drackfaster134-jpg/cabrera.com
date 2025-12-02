@@ -88,6 +88,20 @@
 
 <!-- Tu archivo de autenticación -->
 <script src="auth.js"></script>
+<script src="roles.js"></script>
+
+<script>
+    const rol = localStorage.getItem("rol");
+
+    // Si es admin → mostrar botón para subir archivos
+    if (rol === "admin") {
+        const boton = document.createElement("a");
+        boton.textContent = "Subir Archivo";
+        boton.href = "#";
+        boton.className = "boton";
+        document.getElementById("contenedor-archivos").appendChild(boton);
+    }
+</script>
 
 </body>
 </html>
