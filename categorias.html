@@ -7,25 +7,56 @@
 </head>
 <body class="categorias">
 
-    <div class="contenido">
-        <h1>Categorías</h1>
+<div class="contenido">
+    <h1>Categorías</h1>
 
-        <a href="trabajos.html?tipo=finales" class="boton">Trabajos Finales</a>
-        <a href="trabajos.html?tipo=tareas" class="boton">Tareas</a>
-        <a href="trabajos.html?tipo=proyectos" class="boton">Proyectos</a>
-        <a href="trabajos.html?tipo=examenes" class="boton">Exámenes</a>
-
-        <a href="index.html" class="volver">Volver</a>
+    <div id="adminPanel" style="display:none;">
+        <input type="text" id="newCategory" placeholder="Nueva categoría">
+        <button onclick="addCategory()">Agregar categoría</button>
     </div>
 
-    <!-- Firebase v8 -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <ul id="categoriesList"></ul>
 
-    <!-- Tus scripts -->
-    <script src="auth.js"></script>
-    <script src="roles.js"></script>
+    <a href="index.html" class="volver">Volver</a>
+</div>
 
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="auth.js"></script>
+<script src="roles.js"></script>
+
+<script>
+// Mostrar panel admin si corresponde
+if(localStorage.getItem("rol") === "admin") {
+    document.getElementById("adminPanel").style.display = "block";
+}
+
+// Cargar categorías
+async function loadCategories() {
+    const snapshot = await db.collection("categories").get();
+    const list = document.getElementById("categoriesList");
+    list.innerHTML = "";
+
+    snapshot.forEach(doc => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="trabajos.html?tipo=${encodeURIComponent(doc.data().name)}">${doc.data().name}</a>`;
+        list.appendChild(li);
+    });
+}
+
+// Agregar categoría (solo admin)
+async function addCategory() {
+    const cat = document.getElementById("newCategory").value.trim();
+    if (!cat) return;
+
+    await db.collection("categories").add({ name: cat });
+    document.getElementById("newCategory").value = "";
+    loadCategories();
+}
+
+// Inicializar
+loadCategories();
+</script>
 </body>
 </html>
