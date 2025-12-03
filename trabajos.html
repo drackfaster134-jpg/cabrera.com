@@ -33,38 +33,21 @@
             tareas: [
                 { nombre: "Tarea 1", archivo: "tarea1.pdf" },
                 { nombre: "Tarea 2", archivo: "tarea2.pdf" },
-                { nombre: "Tarea 3", archivo: "tarea3.pdf" },
-                { nombre: "Tarea 4", archivo: "tarea4.pdf" },
-                { nombre: "Tarea 5", archivo: "tarea5.pdf" },
-                { nombre: "Tarea 6", archivo: "tarea6.pdf" },
-                { nombre: "Tarea 7", archivo: "tarea7.pdf" }
+                { nombre: "Tarea 3", archivo: "tarea3.pdf" }
             ],
 
             proyectos: [
                 { nombre: "Proyecto 1", archivo: "proyecto1.pdf" },
-                { nombre: "Proyecto 2", archivo: "proyecto2.pdf" },
-                { nombre: "Proyecto 3", archivo: "proyecto3.pdf" },
-                { nombre: "Proyecto 4", archivo: "proyecto4.pdf" },
-                { nombre: "Proyecto 5", archivo: "proyecto5.pdf" },
-                { nombre: "Proyecto 6", archivo: "proyecto6.pdf" },
-                { nombre: "Proyecto 7", archivo: "proyecto7.pdf" },
-                { nombre: "Proyecto 8", archivo: "proyecto8.pdf" }
+                { nombre: "Proyecto 2", archivo: "proyecto2.pdf" }
             ],
 
             examenes: [
                 { nombre: "Examen 1", archivo: "examen1.pdf" },
-                { nombre: "Examen 2", archivo: "examen2.pdf" },
-                { nombre: "Examen 3", archivo: "examen3.pdf" },
-                { nombre: "Examen 4", archivo: "examen4.pdf" },
-                { nombre: "Examen 5", archivo: "examen5.pdf" },
-                { nombre: "Examen 6", archivo: "examen6.pdf" },
-                { nombre: "Examen 7", archivo: "examen7.pdf" },
-                { nombre: "Examen 8", archivo: "examen8.pdf" },
-                { nombre: "Examen 9", archivo: "examen9.pdf" }
+                { nombre: "Examen 2", archivo: "examen2.pdf" }
             ]
         };
 
-        // Títulos bonitos
+        // Títulos
         const nombresBonitos = {
             finales: "Trabajos Finales",
             tareas: "Tareas",
@@ -74,35 +57,34 @@
 
         titulo.textContent = nombresBonitos[tipo];
 
-        // Insertar archivos
         archivos[tipo].forEach(item => {
             const li = document.createElement("li");
-            li.innerHTML = `<a href="archivos/${item.archivo}" target="_blank">${item.nombre}</a>`;
+            li.innerHTML =
+                `<a href="archivos/${item.archivo}" target="_blank">${item.nombre}</a>`;
             lista.appendChild(li);
         });
     </script>
-<!-- Firebase versión 8 -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-<!-- Tus archivos -->
-<script src="auth.js"></script>
-<script src="roles.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-<script>
-    const rol = localStorage.getItem("rol");
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <script src="roles.js"></script>
 
-    // Si es admin → mostrar botón para subir archivos
-    if (rol === "admin") {
-        const boton = document.createElement("a");
-        boton.textContent = "Subir Archivo";
-        boton.href = "#";
-        boton.className = "boton";
-        document.getElementById("contenedor-archivos").appendChild(boton);
-    }
-</script>
+    <script>
+        const rol = localStorage.getItem("rol");
 
+        if (rol === "admin") {
+            const boton = document.createElement("a");
+            boton.textContent = "Subir Archivo";
+            boton.href = "#";
+            boton.className = "boton";
+            document.getElementById("contenedor-archivos").appendChild(boton);
+        }
+    </script>
 
 </body>
 </html>
