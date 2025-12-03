@@ -15,14 +15,14 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// FUNCIÓN: Verificar si es admin
+// Verificar si es admin
 async function esAdmin(email) {
   const doc = await db.collection("config").doc("admins").get();
   const listaAdmins = doc.data().lista;
   return listaAdmins.includes(email);
 }
 
-// FUNCIÓN: Login
+// FUNCIÓN LOGIN
 async function login() {
   const email = document.getElementById("email").value;
   const pass = document.getElementById("pass").value;
@@ -31,12 +31,12 @@ async function login() {
     await auth.signInWithEmailAndPassword(email, pass);
 
     if (await esAdmin(email)) {
-      alert("Bienvenido ADMIN");
       localStorage.setItem("rol", "admin");
+      alert("Bienvenido ADMIN");
       window.location.href = "categorias.html";
     } else {
-      alert("Bienvenido VISITANTE");
       localStorage.setItem("rol", "visitante");
+      alert("Bienvenido VISITANTE");
       window.location.href = "trabajos.html";
     }
 
